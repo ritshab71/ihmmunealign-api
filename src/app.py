@@ -13,5 +13,9 @@ def respond():
     output = iHMMuneAlign.multi_cell_align(input_file, False)
     return jsonify(output)
 
+@app.route('/')
+def index():
+    return "<h1>Welcome to ihmmunealign-api!</h1>"
+
 if __name__ == '__main__':
     app.run(threaded=True, port=5000)
