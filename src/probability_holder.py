@@ -3,9 +3,9 @@ import re
 import sys
 from Bio import SeqIO
 from box import Box
-import v_gene_finder as VGeneFinder
-import trailing_j_gene_finder as TrailingJGeneFinder
-import a_score as AScore
+import src.v_gene_finder as VGeneFinder
+import src.trailing_j_gene_finder as TrailingJGeneFinder
+import src.a_score as AScore
 
 MIN_PROBABILITY_LIMIT = 9.9999999999999995E-7
 

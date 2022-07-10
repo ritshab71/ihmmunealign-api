@@ -1,7 +1,7 @@
 import sys
 from Bio import SeqIO, Align
 from box import Box
-import alignment as Alignment
+import src.alignment as Alignment
 
 COMMON_AREA_START_POS = 129
 COMMON_AREA_END_POS = 243

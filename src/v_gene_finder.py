@@ -1,6 +1,6 @@
 import sys
 from Bio import SeqIO, Align
-import alignment as Alignment
+import src.alignment as Alignment
 from box import Box
 
 MIN_UMS_ALIGNMENT_END_OFFSET = 12

@@ -1,5 +1,4 @@
-import iHMMune_align as iHMMuneAlign
-import mutability_score as MutabilityScore
+import src.iHMMune_align as iHMMuneAlign
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
@@ -9,7 +8,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/getihmmune/', methods=['GET'])
 def respond():
-    input_file = 'files/input.txt'
+    input_file = 'src/files/input.txt'
     output = iHMMuneAlign.multi_cell_align(input_file, False)
     return jsonify(output)
 

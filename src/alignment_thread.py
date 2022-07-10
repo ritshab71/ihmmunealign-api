@@ -2,11 +2,11 @@ import sys
 from Bio import SeqIO
 from box import Box
 import numpy as np
-import v_gene_finder as VGeneFinder
-import trailing_j_gene_finder as TrailingJGeneFinder
-import a_score as AScore
-import probability_holder as ProbabilityHolder
-import hmm as HMM
+import src.v_gene_finder as VGeneFinder
+import src.trailing_j_gene_finder as TrailingJGeneFinder
+import src.a_score as AScore
+import src.probability_holder as ProbabilityHolder
+import src.hmm as HMM
 
 D_GENE_ACCEPTANCE_TYPE = 1
 

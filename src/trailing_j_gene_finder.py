@@ -1,12 +1,12 @@
 import sys
 from Bio import SeqIO, Align
 from box import Box
-import alignment as Alignment
+import src.alignment as Alignment
 
 MIN_UMS_ALIGNMENT_END_OFFSET = 12
 
 def get_best_alignment(sequence):
-    j_genes = list(SeqIO.parse('files/IGHJ_repertoire.fa', 'fasta'))
+    j_genes = list(SeqIO.parse('src/files/IGHJ_repertoire.fa', 'fasta'))
 
     best_score = float('-inf')
     for gene in j_genes:

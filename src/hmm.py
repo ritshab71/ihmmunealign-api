@@ -1,14 +1,14 @@
 import re
 from Bio import SeqIO
 from box import Box
-import exponential_decay as ExponentialDecay
-import mutability_score as MutabilityScore
-import probability_holder as ProbabilityHolder
+import src.exponential_decay as ExponentialDecay
+import src.mutability_score as MutabilityScore
+import src.probability_holder as ProbabilityHolder
 from pomegranate import *
 from pomegranate import State
 
-d_genes = list(SeqIO.parse('files/IGHD_repertoire.fa', 'fasta'))
-j_genes = list(SeqIO.parse('files/IGHJ_repertoire.fa', 'fasta'))
+d_genes = list(SeqIO.parse('src/files/IGHD_repertoire.fa', 'fasta'))
+j_genes = list(SeqIO.parse('src/files/IGHJ_repertoire.fa', 'fasta'))
 
 def find_family_index(seq_name):
     regex_match = re.search(r"IGH[VDJ](\d{1})", seq_name)

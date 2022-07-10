@@ -1,5 +1,5 @@
 import sys
-import alignment_thread as AlignmentThread
+import src.alignment_thread as AlignmentThread
 from Bio import SeqIO
 
 def multi_cell_align(input_file, is_cdrs):
