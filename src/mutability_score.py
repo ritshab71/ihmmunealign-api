@@ -35,7 +35,7 @@ NRCY_MUTABILITY_SCORE = (WRCY_MUTABILITY_SCORE + NO_HOTSPOT_MUTABILITY_SCORE)/2
 
 def initialise_mutability_dictionary():
     mutability_dict = {}
-    with open('files/mutation_spectrum.txt') as mutation_spectrum:
+    with open('src/files/mutation_spectrum.txt') as mutation_spectrum:
         for line in mutation_spectrum:
             (key, val) = line.split()
             mutability_dict[key] = float(val)

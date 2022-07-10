@@ -39,7 +39,7 @@ def get_exo_probabilities(mean, std_dev, is_reverse_array):
     return normalised_probs
 
 def create():
-    with open('files/iHMMune_align_probabilities.PH') as probabilities_file:
+    with open('src/files/iHMMune_align_probabilities.PH') as probabilities_file:
         probabilities_input = probabilities_file.readlines()
         probabilities_input = [line.rstrip() for line in probabilities_input]
         probabilities_input = probabilities_input[1:]

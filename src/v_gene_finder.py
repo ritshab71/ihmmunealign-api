@@ -6,7 +6,7 @@ from box import Box
 MIN_UMS_ALIGNMENT_END_OFFSET = 12
 
 def get_best_alignment(sequence):
-    v_genes = list(SeqIO.parse('files/IGHV_repertoire.fa', 'fasta'))
+    v_genes = list(SeqIO.parse('src/files/IGHV_repertoire.fa', 'fasta'))
 
     best_score = float('-inf')
     for gene in v_genes:
