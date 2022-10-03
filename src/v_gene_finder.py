@@ -25,9 +25,9 @@ def get_best_alignment(sequence):
     return Box({
         'sequence': sequence,
         'aln_ums': sequence[start1_index:],
-        'v_sequence': best_v_gene.seq,
-        'v_seq_name': best_v_gene.name,
-        'aln_v_gene': best_v_gene.seq[start2_index:],
+        'v_sequence': f'{best_v_gene.seq}',
+        'v_seq_name': f'{best_v_gene.name}',
+        'aln_v_gene': f'{best_v_gene.seq[start2_index:]}',
         'ums_offset': start1_index,
         'v_gene_offset': start2_index,
         'alignment_info': best_alignment

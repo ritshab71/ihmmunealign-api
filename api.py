@@ -8,9 +8,18 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/getihmmune/', methods=['GET'])
 def respond():
-    input_file = 'src/files/input.txt'
-    output = iHMMuneAlign.multi_cell_align(input_file, False)
-    return jsonify(output)
+    sequence = request.args.get("sequence", None)
+
+    response = {}
+    if not sequence:
+        response['error'] = 'No sequence found.'
+    elif sequence == '':
+        response['error'] = 'Empty sequence provided'
+    else:
+        response = iHMMuneAlign.multi_cell_align_sequence(sequence, False)
+
+    print(response)
+    return jsonify(response)
 
 @app.route('/')
 def index():

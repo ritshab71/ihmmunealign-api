@@ -2,8 +2,12 @@ import sys
 import src.alignment_thread as AlignmentThread
 from Bio import SeqIO
 
-def multi_cell_align(input_file, is_cdrs):
+def multi_cell_align_file(input_file, is_cdrs):
     fasta_input = list(SeqIO.parse(input_file, 'fasta'))
-    results = AlignmentThread.run_alignment(fasta_input[0])
+    results = AlignmentThread.run_alignment_file(fasta_input[0])
+    return results
+
+def multi_cell_align_sequence(input_seq, is_cdrs):
+    results = AlignmentThread.run_alignment_sequence(input_seq)
     return results
 
