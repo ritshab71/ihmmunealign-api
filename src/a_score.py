@@ -1,7 +1,6 @@
 import sys
 from Bio import SeqIO, Align
 from box import Box
-import src.alignment as Alignment
 
 COMMON_AREA_START_POS = 129
 COMMON_AREA_END_POS = 243
@@ -14,6 +13,9 @@ X_NUCLEOTIDE = 'X'
 def count_mutations_v_gene(aln_ums, aln_v_gene):
     num_mutations_v_gene = 0
     num_nts_v_gene = 0
+
+    print(f'aln_ums = {len(aln_ums)}')
+    print(f'v_gene.aln_seq = {len(aln_v_gene)}')
 
     for i in range(0, len(aln_v_gene)):
         v_nucl = aln_v_gene[i]

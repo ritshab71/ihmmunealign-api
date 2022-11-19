@@ -3,8 +3,8 @@ from Bio.Align import substitution_matrices
 from Bio.pairwise2 import format_alignment
 from box import Box
 
-OPEN_GAP_COST = -10.0
-EXTEND_GAP_COST = -0.5
+OPEN_GAP_COST = -100.0
+EXTEND_GAP_COST = -5
 
 # source: ---
 def get_alignment_info(align1, align2, score, begin, end):
@@ -33,6 +33,18 @@ def get_alignment_info(align1, align2, score, begin, end):
     })
 
 def perform_local_alignment(sequence, v_sequence):
-    alignment = pairwise2.align.localxs(sequence, v_sequence, open=OPEN_GAP_COST, extend=EXTEND_GAP_COST, one_alignment_only=True)[0]
+    alignment = pairwise2.align.localxs(sequence, v_sequence, open=OPEN_GAP_COST, extend=EXTEND_GAP_COST)[0]
     alignment_object = get_alignment_info(*alignment)
-    return alignment_object
+    alignment_format = format_alignment(*alignment)
+
+    return Box({
+        'aln_object': alignment_object,
+        'aln_format': alignment_format
+    })
+
+
+def main():
+    a = perform_local_alignment('acgctatggacgtctggggccaagggaccacggtcaccgtctcctca'.upper(), 'acggtatggacgtctggggccaagggaccacggtcaccgtctcctca'.upper())
+    print(a.aln_format)
+if __name__ == "__main__":
+    main()

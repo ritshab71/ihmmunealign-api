@@ -1,11 +1,6 @@
 import sys
 from Bio import SeqIO
 from box import Box
-import src.v_gene_finder as VGeneFinder
-import src.trailing_j_gene_finder as TrailingJGeneFinder
-import src.a_score as AScore
-import src.probability_holder as ProbabilityHolder
-import src.exponential_decay as ExponentialDecay
 from pomegranate import *
 
 WAN_NUCLEOTIDE_COVERAGE = 0.0725
