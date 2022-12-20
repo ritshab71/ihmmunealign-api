@@ -1,11 +1,6 @@
 import sys
 from Bio import SeqIO
 from box import Box
-import src.v_gene_finder as VGeneFinder
-import src.trailing_j_gene_finder as TrailingJGeneFinder
-import src.a_score as AScore
-import src.probability_holder as ProbabilityHolder
-import src.exponential_decay as ExponentialDecay
 from pomegranate import *
 
 WAN_NUCLEOTIDE_COVERAGE = 0.0725
@@ -118,7 +113,12 @@ def get_mutability_score(nucl_pos, v_gene):
 def get_match(tri_nucl, mutation_nucl):
     lookup_key = f'{tri_nucl[0]}({tri_nucl[1]}->{mutation_nucl}){tri_nucl[2]}'
     mutability_dict = initialise_mutability_dictionary()
-    return mutability_dict[lookup_key]
+
+    if lookup_key in mutability_dict.keys():
+        lookup = mutability_dict[lookup_key]
+        return lookup
+    else:
+        return -1
 
 def find_tri_nucleotide_probability(tri_nucl, mutation_nucl):
     curr_prob = get_match(tri_nucl, mutation_nucl)
@@ -128,6 +128,7 @@ def find_end_tri_nucleotide_probability(tri_nucl, mutation_nucl):
     total_prob = 0
     for nucl in ['A', 'C', 'G', 'T']:
         unique_tri_nucl = tri_nucl.replace('N', nucl)
+        # print(unique_tri_nucl)
         curr_prob = get_match(unique_tri_nucl, mutation_nucl)
         total_prob += curr_prob
 
@@ -135,6 +136,7 @@ def find_end_tri_nucleotide_probability(tri_nucl, mutation_nucl):
     return avg_prob
 
 def get_tri_nucleotide_probability(seq, nucl, nucl_pos, v_gene):
+    # print(nucl)
     nucl_index = nucl_pos - 1
     max_index = len(seq) - 1
 
@@ -145,8 +147,10 @@ def get_tri_nucleotide_probability(seq, nucl, nucl_pos, v_gene):
     else:
         tri_nucl = f'{seq[nucl_index-1:nucl_index+2]}'
 
+    # print(tri_nucl)
+
     if (tri_nucl[1] == nucl):
-        print('Oh no its -1!')
+        # print('Oh no its -1!')
         return -1
 
     result_prob = -1

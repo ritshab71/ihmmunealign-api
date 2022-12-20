@@ -1,0 +1,206 @@
+j= J00256_IGHJ1*01
+{
+    "aln_format": "287 ACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    |||||||||||||.||||||||||||||||||||||\n 17 ACTGGGGCCAGGGCACCCTGGTCACCGTCTCCTCAG\n  Score=69\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 35,
+        "mutations": 1,
+        "score": 69.0,
+        "start1": 286,
+        "start2": 16
+    }
+}
+
+
+
+j= J00256_IGHJ2*01
+{
+    "aln_format": "288 CTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    ||||||||..||.|||||||||||.||||||||||\n 19 CTGGGGCCGTGGCACCCTGGTCACTGTCTCCTCAG\n  Score=58\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 31,
+        "mutations": 4,
+        "score": 58.0,
+        "start1": 287,
+        "start2": 18
+    }
+}
+
+
+
+j= J00256_IGHJ3*01
+{
+    "aln_format": "288 CTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    |||||||||.||.||..|||||||||||||.||||\n 14 CTGGGGCCAAGGGACAATGGTCACCGTCTCTTCAG\n  Score=55\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 30,
+        "mutations": 5,
+        "score": 55.0,
+        "start1": 287,
+        "start2": 13
+    }
+}
+
+
+
+j= X86355_IGHJ3*02
+{
+    "aln_format": "288 CTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    |||||||||.||.||..|||||||||||||.||||\n 14 CTGGGGCCAAGGGACAATGGTCACCGTCTCTTCAG\n  Score=55\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 30,
+        "mutations": 5,
+        "score": 55.0,
+        "start1": 287,
+        "start2": 13
+    }
+}
+
+
+
+j= J00256_IGHJ4*01
+{
+    "aln_format": "282 TGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    ||.||||||||||||.|||||||||||||||||||||||||\n  8 TGACTACTGGGGCCAAGGAACCCTGGTCACCGTCTCCTCAG\n  Score=76\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 39,
+        "mutations": 2,
+        "score": 76.0,
+        "start1": 281,
+        "start2": 7
+    }
+}
+
+
+
+j= X86355_IGHJ4*02
+{
+    "aln_format": "282 TGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    ||.||||||||||||||||||||||||||||||||||||||\n  8 TGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n  Score=79\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 40,
+        "mutations": 1,
+        "score": 79.0,
+        "start1": 281,
+        "start2": 7
+    }
+}
+
+
+
+j= M25625_IGHJ4*03
+{
+    "aln_format": "282 TGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    ||.||||||||||||.||.||||||||||||||||||||||\n  8 TGACTACTGGGGCCAAGGGACCCTGGTCACCGTCTCCTCAG\n  Score=73\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 38,
+        "mutations": 3,
+        "score": 73.0,
+        "start1": 281,
+        "start2": 7
+    }
+}
+
+
+
+j= J00256_IGHJ5*01
+{
+    "aln_format": "283 GTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    |.||.|||||||||.|||||||||||||||||||||||||\n 12 GACTCCTGGGGCCAAGGAACCCTGGTCACCGTCTCCTCAG\n  Score=71\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 37,
+        "mutations": 3,
+        "score": 71.0,
+        "start1": 282,
+        "start2": 11
+    }
+}
+
+
+
+j= X86355_IGHJ5*02
+{
+    "aln_format": "283 GTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    |.|..|||||||||||||||||||||||||||||||||||\n 12 GACCCCTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n  Score=71\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 37,
+        "mutations": 3,
+        "score": 71.0,
+        "start1": 282,
+        "start2": 11
+    }
+}
+
+
+
+j= J00256_IGHJ6*01
+{
+    "aln_format": "260 ATGACTACGGTGACTTAATCGATGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    ||.|||||....|||........|.|..||||||.||.||.|||..|||||||||||||||||\n  1 ATTACTACTACTACTACGGTATGGACGTCTGGGGGCAAGGGACCACGGTCACCGTCTCCTCAG\n  Score=63\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 42,
+        "mutations": 21,
+        "score": 63.0,
+        "start1": 259,
+        "start2": 0
+    }
+}
+
+
+
+j= X86355_IGHJ6*02
+{
+    "aln_format": "260 ATGACTACGGTGACTTAATCGATGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA\n    ||.|||||....|||........|.|..|||||||||.||.|||..||||||||||||||||\n  1 ATTACTACTACTACTACGGTATGGACGTCTGGGGCCAAGGGACCACGGTCACCGTCTCCTCA\n  Score=64\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 42,
+        "mutations": 20,
+        "score": 64.0,
+        "start1": 259,
+        "start2": 0
+    }
+}
+
+
+
+j= X86356_IGHJ6*03
+{
+    "aln_format": "260 ATGACTACGGTGACTTAATCGATGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA\n    ||.|||||....|||....|...|.|..|||||||.|.||.|||..||||||||||||||||\n  1 ATTACTACTACTACTACTACATGGACGTCTGGGGCAAAGGGACCACGGTCACCGTCTCCTCA\n  Score=64\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 42,
+        "mutations": 20,
+        "score": 64.0,
+        "start1": 259,
+        "start2": 0
+    }
+}
+
+
+
+j= AJ879487_IGHJ6*04
+{
+    "aln_format": "260 ATGACTACGGTGACTTAATCGATGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA\n    ||.|||||....|||........|.|..|||||||.|.||.|||..||||||||||||||||\n  1 ATTACTACTACTACTACGGTATGGACGTCTGGGGCAAAGGGACCACGGTCACCGTCTCCTCA\n  Score=61\n",
+    "aln_object": {
+        "gaps": 0,
+        "matches": 41,
+        "mutations": 21,
+        "score": 61.0,
+        "start1": 259,
+        "start2": 0
+    }
+}
+
+
+
+{
+    "aln_j_gene": "TGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG",
+    "aln_ums": "TGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG",
+    "aln_visual": "282 TGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n    ||.||||||||||||||||||||||||||||||||||||||\n  8 TGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG\n  Score=79\n",
+    "j_gene_offset": 7,
+    "j_seq_name": "X86355_IGHJ4*02",
+    "j_sequence": "ACTACTTTGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG",
+    "ums_no_c": "TCGGAGACCCTGTCCCTCACCTGCGCTGTCTATGGTGGGTCCTTCAGTGGTTACTACTGGAGCTGGATCCGCCAGCCCCCAGGGAAGGGGCTGGAGTGGATTGGGGAAATCAATCATAGTGGAAGCACCAACTACAACCCGTCCCTCAAGAGTCGAGTCACCATATCAGTAGACACGTCCAAGAACCAGTTCTCCCTGAAGCTGAGCTCTGTGACCGCCGCGGACACGGCTGTGTATTACTGTGCGAGAGAAGTTATTAATGACTACGGTGACTTAATCGATGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG",
+    "ums_offset": 281
+}
+null

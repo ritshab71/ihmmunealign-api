@@ -1,9 +1,9 @@
 import re
 from Bio import SeqIO
 from box import Box
-import src.exponential_decay as ExponentialDecay
-import src.mutability_score as MutabilityScore
-import src.probability_holder as ProbabilityHolder
+from exponential_decay import *
+from mutability_score import *
+from probability_holder import *
 from pomegranate import *
 from pomegranate import State
 
@@ -19,20 +19,20 @@ def get_relative_mutation_probability(nucleotide, seq, nucl_position, v_gene, mu
     two_percent_mutation = mutation_prob * 0.02
 
     reduced_mutation = mutation_prob - six_percent_mutation
-    curr_mutation_fraction = MutabilityScore.get_tri_nucleotide_probability(seq, nucleotide, nucl_position, v_gene)
+    curr_mutation_fraction = get_tri_nucleotide_probability(seq, nucleotide, nucl_position, v_gene)
     relative_mutation_prob = curr_mutation_fraction * reduced_mutation * two_percent_mutation
 
     return relative_mutation_prob
 
 def calculate_gene_emission_probability(nucl, nucl_position, seq, v_gene, a_score, gene_type):
     if (gene_type == 'V'):
-        exp_mutation_prob = ExponentialDecay.exponential_decay_v_gene(nucl_position, v_gene.offset)
+        exp_mutation_prob = exponential_decay_v_gene(nucl_position, v_gene.offset)
     elif (gene_type == 'D'):
-        exp_mutation_prob = 1.5 * ExponentialDecay.exponential_decay_d_gene(nucl_position, v_gene.length)
+        exp_mutation_prob = 1.5 * exponential_decay_d_gene(nucl_position, v_gene.length)
     elif (gene_type == 'J'):
-        exp_mutation_prob = ExponentialDecay.exponential_decay_j_gene(nucl_position, v_gene.length)
+        exp_mutation_prob = exponential_decay_j_gene(nucl_position, v_gene.length)
 
-    mutability_score = MutabilityScore.get_mutability_score(nucl_position, v_gene)
+    mutability_score = get_mutability_score(nucl_position, v_gene)
     mutation_prob = a_score * exp_mutation_prob * mutability_score
     no_mutation_prob = 1 - mutation_prob
 
@@ -40,7 +40,9 @@ def calculate_gene_emission_probability(nucl, nucl_position, seq, v_gene, a_scor
       'A': no_mutation_prob if ('A' == nucl) else get_relative_mutation_probability('A', seq, nucl_position, v_gene, mutation_prob),
       'C': no_mutation_prob if ('C' == nucl) else get_relative_mutation_probability('C', seq, nucl_position, v_gene, mutation_prob),
       'G': no_mutation_prob if ('G' == nucl) else get_relative_mutation_probability('G', seq, nucl_position, v_gene, mutation_prob),
-      'T': no_mutation_prob if ('T' == nucl) else get_relative_mutation_probability('T', seq, nucl_position, v_gene, mutation_prob)
+      'T': no_mutation_prob if ('T' == nucl) else get_relative_mutation_probability('T', seq, nucl_position, v_gene, mutation_prob),
+        'N': no_mutation_prob if ('N' == nucl) else get_relative_mutation_probability('N', seq, nucl_position, v_gene, mutation_prob)
+
     })
 
 def add_silent_states(hmm):
@@ -108,7 +110,7 @@ def add_v_states(hmm, v_gene, a_score):
     for position, nucl in enumerate(v_gene.aln_seq):
         nucl_position = position + 1
         prob = calculate_gene_emission_probability(nucl, nucl_position, v_gene.aln_seq, v_gene, a_score, gene_type='V')
-        dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T})
+        dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T, 'N': prob.N})
         state = State(dist, name=f'V{position + 1}')
 
         hmm.add_state(state)
@@ -131,7 +133,7 @@ def add_d_states(hmm, v_gene, a_score):
         for position, nucl in enumerate(d_seq):
             nucl_position = position + 1
             prob = calculate_gene_emission_probability(nucl, nucl_position, d_seq, v_gene, a_score, gene_type='D')
-            dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T})
+            dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T, 'N': prob.N})
             state = State(dist, name=f'D:{d_seq_name}{position + 1}')
 
             hmm.add_state(state)
@@ -156,7 +158,7 @@ def add_j_states(hmm, v_gene, a_score):
         for position, nucl in enumerate(j_seq):
             nucl_position = position + 1
             prob = calculate_gene_emission_probability(nucl, nucl_position, j_seq, v_gene, a_score, gene_type='J')
-            dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T})
+            dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T, 'N': prob.N})
             state = State(dist, name=f'J:{j_seq_name}{position + 1}')
 
             hmm.add_state(state)
@@ -198,7 +200,7 @@ def set_v_transitions(hmm, v_states, x1a, x1b, prob_holder):
 
     mean = prob_holder.v_end_exo_mean[family_index - 1]
     sd = prob_holder.v_end_exo_std_dev[family_index - 1]
-    v_end_exo_probs = ProbabilityHolder.get_exo_probabilities(mean, sd, is_reverse_array=False)
+    v_end_exo_probs = get_exo_probabilities(mean, sd, is_reverse_array=False)
 
     hmm.add_transition(hmm.start, first_v_state, 1)
 
@@ -268,11 +270,11 @@ def set_d_transitions_multi(hmm, x5b_states, x5a_states, d_states_matrix, x7a_st
 
         mean_start = prob_holder.d_start_exo_mean[family_index - 1]
         sd_start = prob_holder.d_start_exo_std_dev[family_index - 1]
-        d_start_exo_probs = ProbabilityHolder.get_exo_probabilities(mean_start, sd_start, is_reverse_array=False)
+        d_start_exo_probs = get_exo_probabilities(mean_start, sd_start, is_reverse_array=False)
 
         mean_end = prob_holder.d_end_exo_mean[family_index - 1]
         sd_end = prob_holder.d_end_exo_std_dev[family_index - 1]
-        d_end_exo_probs = ProbabilityHolder.get_exo_probabilities(mean_end, sd_end, is_reverse_array=False)
+        d_end_exo_probs = get_exo_probabilities(mean_end, sd_end, is_reverse_array=False)
 
         x5bi_to_x5ai_prob = d_end_exo_probs[0]
         hmm.add_transition(x5b_states[i], x5a_states[i], x5bi_to_x5ai_prob)
@@ -338,7 +340,7 @@ def set_j_transitions(hmm, x11a_states, x11b_states, j_states_matrix, prob_holde
 
         mean_start = prob_holder.j_start_exo_mean[family_index - 1]
         sd_start = prob_holder.j_start_exo_std_dev[family_index - 1]
-        j_start_exo_probs = ProbabilityHolder.get_exo_probabilities(mean_start, sd_start, is_reverse_array=False)
+        j_start_exo_probs = get_exo_probabilities(mean_start, sd_start, is_reverse_array=False)
 
         x11bi_to_x11ai_prob = j_start_exo_probs[0]
         hmm.add_transition(x11b_states[i], x11a_states[i], x11bi_to_x11ai_prob)
