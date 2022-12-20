@@ -40,7 +40,9 @@ def calculate_gene_emission_probability(nucl, nucl_position, seq, v_gene, a_scor
       'A': no_mutation_prob if ('A' == nucl) else get_relative_mutation_probability('A', seq, nucl_position, v_gene, mutation_prob),
       'C': no_mutation_prob if ('C' == nucl) else get_relative_mutation_probability('C', seq, nucl_position, v_gene, mutation_prob),
       'G': no_mutation_prob if ('G' == nucl) else get_relative_mutation_probability('G', seq, nucl_position, v_gene, mutation_prob),
-      'T': no_mutation_prob if ('T' == nucl) else get_relative_mutation_probability('T', seq, nucl_position, v_gene, mutation_prob)
+      'T': no_mutation_prob if ('T' == nucl) else get_relative_mutation_probability('T', seq, nucl_position, v_gene, mutation_prob),
+        'N': no_mutation_prob if ('N' == nucl) else get_relative_mutation_probability('N', seq, nucl_position, v_gene, mutation_prob)
+
     })
 
 def add_silent_states(hmm):
@@ -108,7 +110,7 @@ def add_v_states(hmm, v_gene, a_score):
     for position, nucl in enumerate(v_gene.aln_seq):
         nucl_position = position + 1
         prob = calculate_gene_emission_probability(nucl, nucl_position, v_gene.aln_seq, v_gene, a_score, gene_type='V')
-        dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T})
+        dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T, 'N': prob.N})
         state = State(dist, name=f'V{position + 1}')
 
         hmm.add_state(state)
@@ -131,7 +133,7 @@ def add_d_states(hmm, v_gene, a_score):
         for position, nucl in enumerate(d_seq):
             nucl_position = position + 1
             prob = calculate_gene_emission_probability(nucl, nucl_position, d_seq, v_gene, a_score, gene_type='D')
-            dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T})
+            dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T, 'N': prob.N})
             state = State(dist, name=f'D:{d_seq_name}{position + 1}')
 
             hmm.add_state(state)
@@ -156,7 +158,7 @@ def add_j_states(hmm, v_gene, a_score):
         for position, nucl in enumerate(j_seq):
             nucl_position = position + 1
             prob = calculate_gene_emission_probability(nucl, nucl_position, j_seq, v_gene, a_score, gene_type='J')
-            dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T})
+            dist = DiscreteDistribution({'A': prob.A, 'C': prob.C, 'G': prob.G, 'T': prob.T, 'N': prob.N})
             state = State(dist, name=f'J:{j_seq_name}{position + 1}')
 
             hmm.add_state(state)

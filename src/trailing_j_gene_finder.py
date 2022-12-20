@@ -2,6 +2,7 @@ import sys
 from Bio import SeqIO, Align
 from box import Box
 from alignment import *
+import json
 
 MIN_UMS_ALIGNMENT_END_OFFSET = 12
 
@@ -11,17 +12,20 @@ def get_best_alignment(sequence):
     best_score = float('-inf')
     for gene in j_genes:
         j_sequence = gene.seq
+        # print(f'j= {gene.name}')
         curr_alignment_data = perform_local_alignment(sequence, j_sequence)
+        # print(json.dumps(curr_alignment_data, sort_keys=True, indent=4))
+        # print('\n\n')
         curr_alignment = curr_alignment_data.aln_object
 
-        if (curr_alignment.score > best_score and curr_alignment.gaps <= 0):
+        if (curr_alignment.score > best_score):
             best_score = curr_alignment.score
             best_alignment_data = curr_alignment_data
             best_alignment = curr_alignment
             best_j = gene
             best_j_gene = j_sequence
 
-    print(best_j_gene)
+    # print(json.dumps(best_alignment_data, sort_keys=True, indent=4))
 
     start1_index = best_alignment.start1
     start2_index = best_alignment.start2

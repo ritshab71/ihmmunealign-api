@@ -1,7 +1,11 @@
+from numbers import Number
+from operator import attrgetter
 from Bio import pairwise2
 from Bio.Align import substitution_matrices
 from Bio.pairwise2 import format_alignment
 from box import Box
+from Bio.SubsMat import MatrixInfo as matlist
+matrix = matlist.blosum62
 
 OPEN_GAP_COST = -100.0
 EXTEND_GAP_COST = -5
@@ -33,9 +37,12 @@ def get_alignment_info(align1, align2, score, begin, end):
     })
 
 def perform_local_alignment(sequence, v_sequence):
-    alignment = pairwise2.align.localxs(sequence, v_sequence, open=OPEN_GAP_COST, extend=EXTEND_GAP_COST)[0]
-    alignment_object = get_alignment_info(*alignment)
-    alignment_format = format_alignment(*alignment)
+    # alignmentv1 = pairwise2.align.localds(sequence, v_sequence, matrix, open=OPEN_GAP_COST, extend=EXTEND_GAP_COST, one_alignment_only=True)
+    # print(alignmentv1)
+    alignment = pairwise2.align.localds(sequence, v_sequence, matrix, open=OPEN_GAP_COST, extend=EXTEND_GAP_COST)
+
+    alignment_object = get_alignment_info(*alignment[0])
+    alignment_format = format_alignment(*alignment[0])
 
     return Box({
         'aln_object': alignment_object,
@@ -43,8 +50,8 @@ def perform_local_alignment(sequence, v_sequence):
     })
 
 
-def main():
-    a = perform_local_alignment('acgctatggacgtctggggccaagggaccacggtcaccgtctcctca'.upper(), 'acggtatggacgtctggggccaagggaccacggtcaccgtctcctca'.upper())
-    print(a.aln_format)
-if __name__ == "__main__":
-    main()
+# def main():
+#     a = perform_local_alignment('acgctatggacgtctggggccaagggaccacggtcaccgtctcctca'.upper(), 'acggtatggacgtctggggccaagggaccacggtcaccgtctcctca'.upper())
+#     # print(a.aln_format)
+# if __name__ == "__main__":
+#     main()

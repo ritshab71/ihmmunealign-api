@@ -10,7 +10,7 @@ def main():
     a = []
     for seq in input:
 
-        results = run_alignment_sequence(seq.seq)
+        results = run_alignment_sequence(seq.seq.upper())
 
         res_json = Box({
             'results': results,
@@ -21,7 +21,7 @@ def main():
     print(json.dumps(a, sort_keys=True, indent=4))
 
 def main2():
-    seq = 'gaagtgcagctggtggagtctgggggagtcgtggtacagcctggggggtccctgagactctcctgtgcagcctctggattcacctttgatgattataccatgcactgggtccgtcaagctccggggaagggtctggagtgggtctctcttattagttgggatggtggtagcacatactatgcagactctgtgaagggccgattcaccatctccagagacaacagcaaaaactccctgtatctgcaaatgaacagtctgagaactgaggacaccgccttgtattactgtgcaaaa'
+    seq = 'TCGGAGACCCTGTCCCTCACCTGCGCTGTCTATGGTGGGTCCTTCAGTGGTTACTACTGGAGCTGGATCCGCCAGCCCCCAGGGAAGGGGCTGGAGTGGATTGGGGAAATCAATCATAGTGGAAGCACCAACTACAACCCGTCCCTCAAGAGTCGAGTCACCATATCAGTAGACACGTCCAAGAACCAGTTCTCCCTGAAGCTGAGCTCTGTGACCGCCGCGGACACGGCTGTGTATTACTGTGCGAGAGAAGTTATTAATGACTACGGTGACTTAATCGATGTCTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCAG'
 
     results = run_alignment_sequence(seq.upper())
     print(json.dumps(results, sort_keys=True, indent=4))
